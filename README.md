@@ -1,14 +1,32 @@
-# Project
+# Kiota Http Library for Ruby
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+![Ruby](https://github.com/microsoft/kiota-http-ruby/actions/workflows/ruby.yml/badge.svg)
 
-As the maintainer of this project, please make a few updates:
+The Kiota HTTP Library for Ruby is the Ruby HTTP library implementation with [Faraday](https://github.com/lostisland/faraday).
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+A [Kiota](https://github.com/microsoft/kiota) generated project will need a reference to a HTTP package to make HTTP requests to an API endpoint.
+
+Read more about Kiota [here](https://github.com/microsoft/kiota/blob/main/README.md).
+
+## Using the http library
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem "microsoft_kiota_http", "0.9.0"
+```
+
+And then execute:
+
+```shell
+bundle install
+```
+
+Or install it yourself as:
+
+ ```shell
+gem install microsoft_kiota_http --version "0.9.0"
+ ```
 
 ## Contributing
 
