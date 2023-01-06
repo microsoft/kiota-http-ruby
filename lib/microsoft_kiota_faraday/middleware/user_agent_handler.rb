@@ -11,7 +11,6 @@ module MicrosoftKiotaFaraday
                 unless request_env[:request_headers].nil? || !request_option.enabled || request_option.product_name.nil? || request_option.product_name.empty? || request_option.product_version.nil? || request_option.product_version.empty? then
                     existing_value = request_env[:request_headers][@@user_agent_key]
 					additional_value = "#{request_option.product_name}/#{request_option.product_version}"
-					request_url = request_env[:url].to_s
 					if !existing_value || existing_value.empty? then
 						request_env[:request_headers][@@user_agent_key] = additional_value
 					elsif !existing_value.include? additional_value then
