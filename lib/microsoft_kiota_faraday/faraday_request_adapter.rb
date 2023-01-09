@@ -147,5 +147,13 @@ module MicrosoftKiotaFaraday
       end
     end
 
+    def convert_to_native_request_async(request_info)
+      raise StandardError, 'request_info cannot be null' unless request_info
+      return Fiber.new do
+        @authentication_provider.authenticate_request(request_info).resume
+        return self.get_request_from_request_info(request_info)
+      end
+    end
+
   end
 end
