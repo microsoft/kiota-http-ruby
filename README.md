@@ -13,7 +13,7 @@ Read more about Kiota [here](https://github.com/microsoft/kiota/blob/main/README
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "microsoft_kiota_http", "0.9.0"
+gem "microsoft_kiota_http", "0.10.0"
 ```
 
 And then execute:
@@ -25,7 +25,7 @@ bundle install
 Or install it yourself as:
 
  ```shell
-gem install microsoft_kiota_http --version "0.9.0"
+gem install microsoft_kiota_http --version "0.10.0"
  ```
 
 ## Contributing
