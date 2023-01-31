@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = "microsoft_kiota_faraday"
   spec.version       = MicrosoftKiotaFaraday::VERSION
   spec.authors       = 'Microsoft Corporation'
-  spec.email         = 'graphsdkpub@microsoft.com'
+  spec.email         = 'graphsdkpub+ruby@microsoft.com'
   spec.description   = 'Kiota HttpCore implementation with Faraday'
   spec.summary       = "Microsoft Kiota Faraday - Kiota Ruby http request adapter for running requests"
   spec.homepage      = 'https://microsoft.github.io/kiota/'
@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
     'source_code_uri' => 'https://github.com/microsoft/kiota-http-ruby',
     'github_repo'     => 'ssh://github.com/microsoft/kiota-http-ruby'
   }
-  spec.required_ruby_version = ">= 2.7.0"
+  spec.required_ruby_version = ">= 3.0.0"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
