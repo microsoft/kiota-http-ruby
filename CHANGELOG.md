@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+## [0.12.0] - 2023-03-28
+
+### Changed
+
+- Updated kiota abstractions reference
 - Bumped minimum required ruby version to 3.0.
 
 ## [0.11.0] - 2023-01-10
