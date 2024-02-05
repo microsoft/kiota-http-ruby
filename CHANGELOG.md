@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+## [0.13.0] - 2024-02-05
+
+### Changed
+
+- Added support for error mapping deduplication to reduce generated code. [#20](https://github.com/microsoft/kiota-http-ruby/issues/20)
+
 ## [0.12.0] - 2023-03-28
 
 ### Changed

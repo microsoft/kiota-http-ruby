@@ -83,6 +83,7 @@ module MicrosoftKiotaFaraday
       error_factory = errors_mapping[status_code] unless errors_mapping.nil?
       error_factory = errors_mapping['4XX'] unless !error_factory.nil? || errors_mapping.nil? || status_code > 500
       error_factory = errors_mapping['5XX'] unless !error_factory.nil? || errors_mapping.nil? || status_code < 500 || status_code > 600
+      error_factory = errors_mapping['XXX'] unless !error_factory.nil? || errors_mapping.nil? || status_code < 400 || status_code > 600
       raise MicrosoftKiotaAbstractions::ApiError, 'The server returned an unexpected status code and no error factory is registered for this code:' + status_code.to_s if error_factory.nil?
       root_node = self.get_root_parse_node(response)
       error = root_node.get_object_value(error_factory) unless root_node.nil?
