@@ -9,7 +9,7 @@ module MicrosoftKiotaFaraday
     include MicrosoftKiotaAbstractions::RequestAdapter
 
     attr_accessor :authentication_provider, :content_type_header_key, :parse_node_factory, :serialization_writer_factory, :client
-    
+
     def initialize(authentication_provider, parse_node_factory=MicrosoftKiotaAbstractions::ParseNodeFactoryRegistry.default_instance, serialization_writer_factory=MicrosoftKiotaAbstractions::SerializationWriterFactoryRegistry.default_instance, client = KiotaClientFactory::get_default_http_client)
 
       if !authentication_provider
@@ -21,7 +21,7 @@ module MicrosoftKiotaFaraday
       if @parse_node_factory.nil?
         @parse_node_factory = MicrosoftKiotaAbstractions::ParseNodeFactoryRegistry.default_instance
       end
-      @serialization_writer_factory = serialization_writer_factory 
+      @serialization_writer_factory = serialization_writer_factory
       if @serialization_writer_factory.nil?
         @serialization_writer_factory = MicrosoftKiotaAbstractions::SerializationWriterFactoryRegistry.default_instance
       end
@@ -49,6 +49,7 @@ module MicrosoftKiotaFaraday
       raise StandardError, 'factory cannot be null' unless factory
 
       Fiber.new do
+        set_base_url_for_request_information(request_info)
         @authentication_provider.authenticate_request(request_info).resume
         request = self.get_request_from_request_info(request_info)
         response = @client.run_request(request.http_method, request.path, request.body, request.headers)
@@ -92,7 +93,7 @@ module MicrosoftKiotaFaraday
     end
 
     def get_request_from_request_info(request_info)
-      request_info.path_parameters['baseurl'] = @base_url
+      set_base_url_for_request_information(request_info)
       case request_info.http_method
         when :GET
           request = @client.build_request(:get)
@@ -118,7 +119,7 @@ module MicrosoftKiotaFaraday
       request.path = request_info.uri
       unless request_info.headers.nil? then
         request.headers = Faraday::Utils::Headers.new
-        request_info.headers.get_all.select{|k,v| 
+        request_info.headers.get_all.select{|k,v|
           if v.kind_of? Array then
             request.headers[k] = v.join(',')
           elsif v.kind_of? String then
@@ -151,10 +152,16 @@ module MicrosoftKiotaFaraday
     def convert_to_native_request_async(request_info)
       raise StandardError, 'request_info cannot be null' unless request_info
       return Fiber.new do
+        set_base_url_for_request_information(request_info)
         @authentication_provider.authenticate_request(request_info).resume
         return self.get_request_from_request_info(request_info)
       end
     end
 
+    private
+
+    def set_base_url_for_request_information(request_info)
+      request_info.path_parameters['baseurl'] = @base_url
+    end
   end
 end
