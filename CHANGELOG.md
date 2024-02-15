@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+## [0.14.0] - 2024-02-14
+
+### Changed
+
+- Make sure the base_url is set when calling authenticate_request. [#27](https://github.com/microsoft/kiota-http-ruby/pull/27)
+
 ## [0.13.0] - 2024-02-05
 
 ### Changed
