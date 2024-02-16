@@ -71,6 +71,7 @@ module MicrosoftKiotaFaraday
       raise StandardError, 'response cannot be null' unless response
       response_content_type = self.get_response_content_type(response);
       raise StandardError, 'no response content type found for deserialization' unless response_content_type
+      return if response.body.nil? || response.body.empty?
       return @parse_node_factory.get_parse_node(response_content_type, response.body)
     end
 

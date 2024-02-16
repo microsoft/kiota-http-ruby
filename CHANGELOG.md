@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+## [0.15.0] - 2024-02-16
+
+### Changed
+
+- Ensure get_parse_node does not fail when response body is empty. [#27](https://github.com/microsoft/kiota-http-ruby/pull/28)
+
 ## [0.14.0] - 2024-02-14
 
 ### Changed
