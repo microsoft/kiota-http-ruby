@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
-        ruby-version: ['3.0', '3.1', '3.2', head, jruby, jruby-head, truffleruby, truffleruby-head]
+        ruby-version: ['3.3', '3.4', '4.0', head, jruby, jruby-head, truffleruby, truffleruby-head]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
@@ -25,10 +25,24 @@ jobs:
       - name: Run tests
         run: bundle exec rake
       - name: Upload artifacts for ruby version 3 and ubuntu
-        if: ${{ matrix.os == 'ubuntu-latest'  && matrix.ruby-version == '3.2'}}
+        if: ${{ matrix.os == 'ubuntu-latest'  && matrix.ruby-version == '3.4'}}
         uses: actions/upload-artifact@v7
         with:
           name: drop
           path: |
             ./Gemfile.lock
             ./README.md
+
+  # The check-ruby-version-matrix returns success if all matrix jobs in build are successful; otherwise, it returns a failure.
+  # Use this as a PR status check for GitHub Policy Service instead of individual matrix entry checks.
+  check-ruby-version-matrix:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: always()
+    steps:
+      - name: All build matrix options are successful
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: One or more build matrix options failed
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
