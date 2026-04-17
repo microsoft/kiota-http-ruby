@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "packages": {
+    ".": {
+      "release-type": "ruby",
+      "package-name": "microsoft_kiota_faraday",
+      "changelog-path": "CHANGELOG.md",
+      "include-v-in-tag": true,
+      "include-component-in-tag": false,
+      "bump-minor-pre-major": true,
+      "version-file": "lib/microsoft_kiota_faraday/version.rb"
+    }
+  },
+  "bootstrap-sha": "e93a03a8e502a589d1f2c2cfaa88f470aec3456e"
+}
