@@ -21,6 +21,7 @@ permissions:
 
 jobs:
   release:
+    if: ${{ secrets.RELEASE_PLEASE_TOKEN_PROVIDER_PEM != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
